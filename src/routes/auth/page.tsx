@@ -3,15 +3,23 @@ import { Box } from "@/components/Box/Box";
 import { Button } from "@/components/Button/Button";
 import { Input } from "@/components/Input/Input";
 import { LifecycleData } from "@/types/LifecycleData";
+import Alert from "@/components/Alert/Alert";
 
 export function AuthPage() {
   const data = useActionData() as LifecycleData | undefined;
   const [params] = useSearchParams();
 
   return (
-    <div className="w-full h-screen flex items-center justify-center">
+    <div className="mx-auto h-screen flex items-center justify-center flex-col max-w-sm">
+      {params.has("challengeError") && (
+        <Alert
+          title="Error login in"
+          type="danger"
+          message={params.get("challengeError") ?? ""}
+        />
+      )}
       <Box className="max-w-sm">
-        <h1 className="text-2xl font-semibold text-gray-700 dark:text-white text-center">
+        <h1 className="text-2xl font-semibold text-gray-700 dark:text-white text-center ">
           Log in to scared-ape 🦍
         </h1>
         {!params.has("challengeTo") ? (
@@ -36,18 +44,18 @@ export function AuthPage() {
             </p>
           </Form>
         ) : (
-          <>
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 text-center">
+          <div className="mt-2 text-sm text-gray-500 dark:text-gray-400 text-center">
+            <p>
               An email has been sent to {params.get("challengeTo")}, with a
               login link.
-              <Link
-                className="text-blue-600 hover:underline dark:text-blue-500"
-                to="/auth"
-              >
-                <p>Click here to return to the login page</p>
-              </Link>
             </p>
-          </>
+            <Link
+              className="text-blue-600 hover:underline dark:text-blue-500"
+              to="/auth"
+            >
+              <p>Click here to return to the login page</p>
+            </Link>
+          </div>
         )}
       </Box>
     </div>

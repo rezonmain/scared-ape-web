@@ -13,6 +13,7 @@ async function api<T>(key: FetchKey | string): Promise<ApiResponse<T>> {
   try {
     const response = await fetch(url, {
       ...key,
+      credentials: "include",
     });
     if (!response.ok) {
       throw response;
