@@ -11,7 +11,7 @@ type SidebarProps = {
 const Sidebar = (props: SidebarProps) => {
   const targetRef = useRef<HTMLDivElement>(null);
   const { drawer } = useFlowbiteDrawer(targetRef);
-  const { dispatch } = useStore();
+  const { dispatch, user } = useStore();
 
   useEffect(() => {
     dispatch({ type: "set_drawer", payload: drawer });
@@ -44,6 +44,7 @@ const Sidebar = (props: SidebarProps) => {
           {props.items.map((item) => (
             <SidebarItem key={item.label} {...item} />
           ))}
+          {user && <SidebarItem label="Profile" icon="user" href="/profile" />}
         </ul>
       </div>
     </div>
