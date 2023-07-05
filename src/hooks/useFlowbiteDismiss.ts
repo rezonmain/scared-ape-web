@@ -16,8 +16,7 @@ const useFlowbiteDismiss = (
       ...opts,
     };
 
-    const dismiss = new Dismiss(target.current, null, options);
-    setDismiss(dismiss);
+    setDismiss(new Dismiss(target.current, null, options));
   }, [target, opts]);
 
   return {
