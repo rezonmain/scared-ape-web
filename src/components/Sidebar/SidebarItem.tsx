@@ -2,15 +2,19 @@ import { ComponentProps } from "react";
 import { Icon } from "../Icon/Icon";
 import { Link } from "react-router-dom";
 import { isNothing } from "../../utils/ez";
+import { DrawerInterface } from "flowbite";
+import { useStore } from "@/context/app/app.context";
 
 type SidebarItemProps = {
   href: string;
   icon?: ComponentProps<typeof Icon>["name"];
   label: string;
   items?: Omit<SidebarItemProps, "icon" | "items">[];
+  drawer?: DrawerInterface;
 };
 
 const SidebarItem = (props: SidebarItemProps) => {
+  const { drawer } = useStore();
   if (!isNothing(props.items)) {
     return (
       <>
@@ -30,7 +34,7 @@ const SidebarItem = (props: SidebarItemProps) => {
           {props?.items?.map((item) => (
             <li>
               <Link
-                data-drawer-hide="drawer-navigation"
+                onClick={() => drawer?.hide()}
                 to={item.href}
                 className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >
@@ -45,7 +49,7 @@ const SidebarItem = (props: SidebarItemProps) => {
   return (
     <Link
       to={props.href}
-      data-drawer-hide="drawer-navigation"
+      onClick={() => drawer?.hide()}
       className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
     >
       {props.icon && <Icon name={props.icon} />}

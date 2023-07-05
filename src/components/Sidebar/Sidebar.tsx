@@ -1,17 +1,28 @@
+import { useEffect, useRef } from "react";
 import { Icon } from "../Icon/Icon";
 import { SidebarItem } from "./SidebarItem";
+import { useFlowbiteDrawer } from "@/hooks/useFlowbiteDrawer";
+import { useStore } from "@/context/app/app.context";
 
 type SidebarProps = {
   items: React.ComponentProps<typeof SidebarItem>[];
 };
 
 const Sidebar = (props: SidebarProps) => {
+  const targetRef = useRef<HTMLDivElement>(null);
+  const { drawer } = useFlowbiteDrawer(targetRef);
+  const { dispatch } = useStore();
+
+  useEffect(() => {
+    dispatch({ type: "set_drawer", payload: drawer });
+  }, [dispatch, drawer]);
+
   return (
     <div
+      ref={targetRef}
       id="drawer-navigation"
       className="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800"
       tabIndex={-1}
-      aria-labelledby="drawer-navigation-label"
     >
       <h5
         id="drawer-navigation-label"
@@ -21,7 +32,7 @@ const Sidebar = (props: SidebarProps) => {
       </h5>
       <button
         type="button"
-        data-drawer-hide="drawer-navigation"
+        onClick={() => drawer?.hide()}
         aria-controls="drawer-navigation"
         className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
       >
