@@ -8,8 +8,9 @@ import { DashboardLayout } from "./layouts/dashboard";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/">
+    <>
       <Route
+        path="/"
         element={
           <DashboardLayout>
             <Outlet />
@@ -26,7 +27,7 @@ const router = createBrowserRouter(
           lazy={() => import("./routes/auth/challenge")}
         />
       </Route>
-    </Route>
+    </>
   )
 );
 
