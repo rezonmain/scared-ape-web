@@ -9,8 +9,13 @@ async function challengeLoader({ params }: { params: Params }) {
     redirect("/auth");
   }
   try {
-    const { opts } = await api<UserDto>(`/auth/challenge/${params.token}`);
-    const redirectParams = new URLSearchParams({ cuid: opts.cuid }).toString();
+    const user = await api<UserDto>(`/auth/challenge/${params.token}`);
+    const redirectParams = new URLSearchParams({
+      cuid: user.cuid,
+      email: user.email,
+      role: user.role,
+      whitelist: user.whitelist.toString(),
+    }).toString();
     return redirect(`/dashboard?${redirectParams}`);
   } catch (error) {
     if (error instanceof ApiError) {
