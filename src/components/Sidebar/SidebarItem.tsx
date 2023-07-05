@@ -29,12 +29,13 @@ const SidebarItem = (props: SidebarItemProps) => {
         <ul id={`dropdown-${props.label}`} className="hidden py-2 space-y-2">
           {props?.items?.map((item) => (
             <li>
-              <a
-                href={item.href}
+              <Link
+                data-drawer-hide="drawer-navigation"
+                to={item.href}
                 className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
               >
                 {item.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -44,6 +45,7 @@ const SidebarItem = (props: SidebarItemProps) => {
   return (
     <Link
       to={props.href}
+      data-drawer-hide="drawer-navigation"
       className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
     >
       {props.icon && <Icon name={props.icon} />}
