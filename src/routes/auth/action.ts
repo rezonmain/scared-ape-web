@@ -7,11 +7,11 @@ import { redirect } from "react-router-dom";
 async function authAction({ request }: { request: Request }) {
   const email = (await request.formData()).get("email");
   try {
-    const data = await api<ChallengeSentDto>({
+    const challenge = await api<ChallengeSentDto>({
       url: `/auth?email=${email}`,
       method: "post",
     });
-    return redirect(`/auth?challengeTo=${data.opts.email}`);
+    return redirect(`/auth?challengeTo=${challenge.email}`);
   } catch (error) {
     if (error instanceof ApiError) {
       return new LifecycleData({ data: null, error });
