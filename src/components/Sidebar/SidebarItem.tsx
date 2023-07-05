@@ -2,7 +2,6 @@ import { ComponentProps } from "react";
 import { Icon } from "../Icon/Icon";
 import { Link } from "react-router-dom";
 import { isNothing } from "../../utils/ez";
-import { DrawerInterface } from "flowbite";
 import { useStore } from "@/context/app/app.context";
 
 type SidebarItemProps = {
@@ -10,7 +9,6 @@ type SidebarItemProps = {
   icon?: ComponentProps<typeof Icon>["name"];
   label: string;
   items?: Omit<SidebarItemProps, "icon" | "items">[];
-  drawer?: DrawerInterface;
 };
 
 const SidebarItem = (props: SidebarItemProps) => {
