@@ -1,11 +1,11 @@
-import { ApiError, ApiResponse } from "../types/ApiResponse.js";
+import { ApiError } from "../types/ApiResponse.js";
 import { FetchKey } from "../types/FetchKey.js";
 
 const base = import.meta.env.VITE_API_URL;
 
-async function api<T>(path: string): Promise<ApiResponse<T>>;
-async function api<T>(key: FetchKey): Promise<ApiResponse<T>>;
-async function api<T>(key: FetchKey | string): Promise<ApiResponse<T>> {
+async function api<T>(path: string): Promise<T>;
+async function api<T>(key: FetchKey): Promise<T>;
+async function api<T>(key: FetchKey | string): Promise<T> {
   if (typeof key === "string") {
     key = { url: key };
   }
