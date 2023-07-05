@@ -12,11 +12,13 @@ export function AuthPage() {
   return (
     <div className="mx-auto h-screen flex items-center justify-center flex-col max-w-sm">
       {params.has("challengeError") && (
-        <Alert
-          title="Error login in"
-          type="danger"
-          message={params.get("challengeError") ?? ""}
-        />
+        <>
+          <Alert
+            title="Error logging in"
+            type="danger"
+            message={params.get("challengeError") ?? ""}
+          />
+        </>
       )}
       <Box className="max-w-sm">
         <h1 className="text-2xl font-semibold text-gray-700 dark:text-white text-center ">
