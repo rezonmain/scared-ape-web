@@ -1,4 +1,5 @@
 import {
+  Navigate,
   Outlet,
   Route,
   createBrowserRouter,
@@ -10,14 +11,13 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route
-        path="/"
         element={
           <DashboardLayout>
             <Outlet />
           </DashboardLayout>
         }
       >
-        <Route path="/dashboard" element={<div>Dashboard</div>} />
+        <Route path="/dashboard" lazy={() => import("./routes/dashboard")} />
         <Route path="/scraper" lazy={() => import("./routes/scraper")} />
         <Route path="/run" element={<div>Run</div>} />
       </Route>
@@ -27,6 +27,7 @@ const router = createBrowserRouter(
           lazy={() => import("./routes/auth/challenge")}
         />
       </Route>
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </>
   )
 );
