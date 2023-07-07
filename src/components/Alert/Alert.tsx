@@ -104,7 +104,7 @@ const Alert = ({
         )}
         {canDissmiss && (
           <button
-            onClick={() => dismiss.hide()}
+            onClick={() => dismiss?.hide()}
             type="button"
             className={`${common.dismissBtn} ${classNames.dismissBtn}`}
             aria-label="Close"

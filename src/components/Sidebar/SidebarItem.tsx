@@ -2,7 +2,7 @@ import { ComponentProps } from "react";
 import { Icon } from "../Icon/Icon";
 import { Link } from "react-router-dom";
 import { isNothing } from "../../utils/ez";
-import { useStore } from "@/context/app/app.context";
+import { useAppStore } from "@/context/app/app.context";
 
 type SidebarItemProps = {
   href: string;
@@ -12,7 +12,7 @@ type SidebarItemProps = {
 };
 
 const SidebarItem = (props: SidebarItemProps) => {
-  const { drawer } = useStore();
+  const { drawer } = useAppStore();
   if (!isNothing(props.items)) {
     return (
       <>

@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { Icon } from "../Icon/Icon";
 import { SidebarItem } from "./SidebarItem";
 import { useFlowbiteDrawer } from "@/hooks/useFlowbiteDrawer";
-import { useStore } from "@/context/app/app.context";
+import { useAppStore } from "@/context/app/app.context";
 
 type SidebarProps = {
   items: React.ComponentProps<typeof SidebarItem>[];
@@ -11,7 +11,7 @@ type SidebarProps = {
 const Sidebar = (props: SidebarProps) => {
   const targetRef = useRef<HTMLDivElement>(null);
   const { drawer } = useFlowbiteDrawer(targetRef);
-  const { dispatch, user } = useStore();
+  const { dispatch, user } = useAppStore();
 
   useEffect(() => {
     dispatch({ type: "set_drawer", payload: drawer });

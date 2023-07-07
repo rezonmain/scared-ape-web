@@ -22,4 +22,4 @@ export const AppContext = createContext<AppContext>({
   dispatch: () => undefined,
 });
 
-export const useStore = (): AppContext => useContext(AppContext);
+export const useAppStore = (): AppContext => useContext(AppContext);

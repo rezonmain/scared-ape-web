@@ -1,13 +1,13 @@
 import { Banner } from "@/components/Banner/Banner";
 import { Nav } from "@/components/Nav/Nav";
 import { Sidebar } from "@/components/Sidebar/Sidebar";
-import { useStore } from "@/context/app/app.context";
-import { useSessionStore } from "@/hooks/useSessionStore";
+import { useAppStore } from "@/context/app/app.context";
+import { useLocalStore } from "@/hooks/useSessionStore";
 import { ComponentProps } from "react";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useStore();
-  const { store } = useSessionStore();
+  const { user } = useAppStore();
+  const { get } = useLocalStore();
   const items: ComponentProps<typeof Sidebar>["items"] = [
     {
       href: "/",
@@ -39,7 +39,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       <Nav items={items} />
       <Sidebar items={items} />
       {children}
-      {!store.get("hasClosedBanner") && !user && <Banner />}
+      {!get("hasClosedBanner") && !user && <Banner />}
     </>
   );
 };

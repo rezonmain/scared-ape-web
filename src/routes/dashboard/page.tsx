@@ -1,11 +1,11 @@
 import { useSearchParams } from "react-router-dom";
-import { useStore } from "@/context/app/app.context";
+import { useAppStore } from "@/context/app/app.context";
 import { useEffect } from "react";
 import { Validator } from "@/utils/Validate";
 
 export function DashboardPage() {
   const [params, setParams] = useSearchParams();
-  const { dispatch, user } = useStore();
+  const { dispatch, user } = useAppStore();
 
   useEffect(() => {
     if (!params.has("cuid")) return;

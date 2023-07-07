@@ -1,14 +1,14 @@
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "../Icon/Icon";
 import { useFlowbiteDismiss } from "@/hooks/useFlowbiteDismiss";
-import { useSessionStore } from "@/hooks/useSessionStore";
+import { useLocalStore } from "@/hooks/useSessionStore";
 
 function Banner() {
   const dismissRef = useRef<HTMLDivElement>(null);
-  const { store } = useSessionStore();
+  const { set } = useLocalStore();
   const { dismiss } = useFlowbiteDismiss(dismissRef, {
-    onHide: () => store.set("hasClosedBanner", "true"),
+    onHide: useCallback(() => set("hasClosedBanner", "true"), []),
   });
 
   return (
@@ -37,7 +37,7 @@ function Banner() {
       </div>
       <div className="flex items-center">
         <button
-          onClick={() => dismiss.hide()}
+          onClick={() => dismiss?.hide()}
           data-dismiss-target="#bottom-banner"
           type="button"
           className="flex-shrink-0 inline-flex justify-center w-7 h-7 items-center text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 dark:hover:bg-gray-600 dark:hover:text-white"
