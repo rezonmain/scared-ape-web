@@ -6,10 +6,17 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import { DashboardLayout } from "./layouts/dashboard";
+import { GlobalLayout } from "./layouts/global";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <>
+    <Route
+      element={
+        <GlobalLayout>
+          <Outlet />
+        </GlobalLayout>
+      }
+    >
       <Route
         element={
           <DashboardLayout>
@@ -28,7 +35,7 @@ const router = createBrowserRouter(
         />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
-    </>
+    </Route>
   )
 );
 

@@ -2,7 +2,7 @@ import { useFlowbiteDismiss } from "@/hooks/useFlowbiteDismiss";
 import { Icon } from "../Icon/Icon";
 import { useRef } from "react";
 
-interface AlertProps {
+export interface AlertProps {
   type?: keyof typeof variants;
   title: string;
   id: string;
@@ -12,6 +12,7 @@ interface AlertProps {
     action: () => void;
   };
   canDissmiss?: boolean;
+  onDismiss?: () => void;
 }
 
 type AlertClasses = {
@@ -53,7 +54,7 @@ const variants = {
     actionBtn:
       "bg-yellow-800 hover:bg-yellow-900 focus:ring-yellow-200 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800",
   },
-  danger: {
+  error: {
     container:
       "text-gray-800 border-red-300 bg-red-50 dark:text-red-400 dark:border-red-800",
     dismissBtn:
@@ -104,7 +105,13 @@ const Alert = ({
         )}
         {canDissmiss && (
           <button
-            onClick={() => dismiss?.hide()}
+            onClick={() => {
+              if (props.onDismiss) {
+                props.onDismiss();
+                return;
+              }
+              dismiss?.hide();
+            }}
             type="button"
             className={`${common.dismissBtn} ${classNames.dismissBtn}`}
             aria-label="Close"

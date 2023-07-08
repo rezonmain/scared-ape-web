@@ -15,7 +15,7 @@ export function AuthPage() {
         <>
           <Alert
             title="Error logging in"
-            type="danger"
+            type="error"
             message={params.get("challengeError") ?? ""}
           />
         </>
