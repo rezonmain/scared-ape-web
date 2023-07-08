@@ -1,4 +1,4 @@
-import { AlertProps } from "@/components/Alert/Alert";
+import { AlertProps } from "@/components/ui/Alert/Alert";
 
 export interface QueryAlertOpts {
   showAlert: boolean;

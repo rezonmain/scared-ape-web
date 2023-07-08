@@ -20,6 +20,17 @@ class ScraperDto implements IScraper {
   get shouldNotifyChanges() {
     return this.opts.shouldNotifyChanges;
   }
+
+  get dto() {
+    return {
+      knownId: this.knownId,
+      name: this.name,
+      associatedWidgets: this.associatedWidgets,
+      status: this.status,
+      interval: this.interval,
+      shouldNotifyChanges: this.shouldNotifyChanges,
+    };
+  }
 }
 
 export { ScraperDto };

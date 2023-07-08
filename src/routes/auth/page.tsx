@@ -3,7 +3,7 @@ import { Box } from "@/components/Box/Box";
 import { Button } from "@/components/Button/Button";
 import { Input } from "@/components/Input/Input";
 import { LifecycleData } from "@/types/LifecycleData";
-import Alert from "@/components/Alert/Alert";
+import Alert from "@/components/ui/Alert/Alert";
 
 export function AuthPage() {
   const data = useActionData() as LifecycleData | undefined;
