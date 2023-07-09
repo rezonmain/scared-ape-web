@@ -1,9 +1,9 @@
 import { Form, Link, useActionData, useSearchParams } from "react-router-dom";
-import { Box } from "@/components/Box/Box";
-import { Button } from "@/components/Button/Button";
-import { Input } from "@/components/Input/Input";
 import { LifecycleData } from "@/types/LifecycleData";
 import Alert from "@/components/ui/Alert/Alert";
+import { Box } from "@/components/ui/Box/Box";
+import { Input } from "@/components/ui/Input/Input";
+import { Button } from "@/components/ui/Button/Button";
 
 export function AuthPage() {
   const data = useActionData() as LifecycleData | undefined;
