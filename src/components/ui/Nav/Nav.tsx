@@ -2,8 +2,8 @@ import { useAppStore } from "@/context/app/app.context";
 import { Icon } from "../Icon/Icon";
 import { ComponentProps } from "react";
 import { NavItem } from "./NavItem";
-import { Avatar } from "@/components/Avatar/Avatar";
 import { Link } from "react-router-dom";
+import { Avatar } from "../Avatar/Avatar";
 
 type NavProps = {
   items: ComponentProps<typeof NavItem>[];
