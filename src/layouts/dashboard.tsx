@@ -1,6 +1,6 @@
-import { Banner } from "@/components/Banner/Banner";
-import { Nav } from "@/components/Nav/Nav";
-import { Sidebar } from "@/components/Sidebar/Sidebar";
+import { Banner } from "@/components/ui/Banner/Banner";
+import { Nav } from "@/components/ui/Nav/Nav";
+import { Sidebar } from "@/components/ui/Sidebar/Sidebar";
 import { useAppStore } from "@/context/app/app.context";
 import { useLocalStore } from "@/hooks/useSessionStore";
 import { ComponentProps } from "react";
