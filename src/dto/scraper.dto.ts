@@ -20,8 +20,14 @@ class ScraperDto implements IScraper {
   get shouldNotifyChanges() {
     return this.opts.shouldNotifyChanges;
   }
+  get description() {
+    return this.opts.description;
+  }
+  get url() {
+    return this.opts.url;
+  }
 
-  get dto() {
+  get dto(): IScraper {
     return {
       knownId: this.knownId,
       name: this.name,
@@ -29,6 +35,8 @@ class ScraperDto implements IScraper {
       status: this.status,
       interval: this.interval,
       shouldNotifyChanges: this.shouldNotifyChanges,
+      description: this.description,
+      url: this.url,
     };
   }
 }
