@@ -1,8 +1,8 @@
 import { ComponentProps } from "react";
 import { Icon } from "../Icon/Icon";
 import { Link } from "react-router-dom";
-import { isNothing } from "../../utils/ez";
 import { useAppStore } from "@/context/app/app.context";
+import { isNothing } from "@/utils/ez";
 
 type SidebarItemProps = {
   href: string;
