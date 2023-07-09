@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+import flowbite from "flowbite/plugin";
+import typography from "flowbite-typography";
+
 export default {
   darkMode: "media",
   content: [
@@ -9,5 +12,5 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [import("flowbite/plugin")],
+  plugins: [flowbite, typography],
 };
