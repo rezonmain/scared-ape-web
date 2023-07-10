@@ -35,7 +35,10 @@ const usePaginatedScrapers = (
     url: `/scraper?${new URLSearchParams(init)}`,
   };
 
-  const { data, isLoading, error } = useSWR(key, api<Paginated<IScraper>>);
+  const { data, isLoading, error } = useSWR(key, api<Paginated<IScraper>>, {
+    revalidateOnFocus: false,
+    refreshInterval: 0,
+  });
 
   return {
     ...data,
