@@ -1,10 +1,19 @@
-import { ScraperDto } from "@/dto/scraper.dto";
-import { api } from "@/utils/api";
-import { useLocation } from "react-router-dom";
-import useSWR from "swr";
+import { usePaginatedScrapers } from "@/hooks/usePaginatedScrapers";
+import { Skeleton } from "../ui/Skeleton/Skeleton";
+import { ScraperCard } from "../ScraperCard/ScraperCard";
+
 const DashboardScrapers = () => {
-  const location = useLocation();
-  const { data, isLoading, error } = useSWR(location, () =>
-    api<ScraperDto[]>("/scrapers")
+  const { list, isLoading } = usePaginatedScrapers();
+
+  return (
+    <div>
+      {isLoading && <Skeleton type="card" />}
+      {list &&
+        list.map((scraper) => (
+          <ScraperCard key={scraper.knownId} scraper={scraper} />
+        ))}
+    </div>
   );
 };
+
+export { DashboardScrapers };
