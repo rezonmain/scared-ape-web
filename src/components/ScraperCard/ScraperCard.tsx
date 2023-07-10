@@ -1,7 +1,6 @@
 import { FaTelegram, FaClock } from "react-icons/fa";
 import ms from "ms";
 import { IScraper } from "@/models/Scraper";
-import { Icon } from "../ui/Icon/Icon";
 import { Tooltip } from "../ui/Tooltip/Tooltip";
 import { useAppStore } from "@/context/app/app.context";
 import { Button } from "../ui/Button/Button";
@@ -44,12 +43,16 @@ const ScraperCard = ({ scraper }: ScraperCardProps) => {
           </div>
         </Tooltip>
       </div>
-      <div className="w-full">
+      <div className="flex flex-row justify-start gap-4">
+        <Button className="block mt-4" disabled={!user || user.role !== "pyro"}>
+          See runs
+        </Button>
         <Button
-          className="ml-auto block"
+          variant="primary-outline"
+          className="block mt-4"
           disabled={!user || user.role !== "pyro"}
         >
-          See runs
+          Manage scraper
         </Button>
       </div>
     </div>
