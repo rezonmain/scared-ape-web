@@ -6,7 +6,7 @@ const DashboardScrapers = () => {
   const { list, isLoading } = usePaginatedScrapers();
 
   return (
-    <div>
+    <div className="w-full flex flex-row flex-wrap gap-8 justify-center">
       {isLoading && <Skeleton type="card" />}
       {list &&
         list.map((scraper) => (
