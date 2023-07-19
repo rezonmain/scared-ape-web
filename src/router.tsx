@@ -33,6 +33,7 @@ const router = createBrowserRouter(
           path="challenge/:token"
           lazy={() => import("./routes/auth/challenge")}
         />
+        <Route path="yeet" lazy={() => import("./routes/auth/yeet")} />
       </Route>
       <Route path="*" element={<Navigate to="/dashboard" replace />} />
     </Route>
