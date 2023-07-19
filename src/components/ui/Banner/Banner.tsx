@@ -1,14 +1,12 @@
-import { useCallback, useRef } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "../Icon/Icon";
 import { useFlowbiteDismiss } from "@/hooks/useFlowbiteDismiss";
-import { useLocalStore } from "@/hooks/useSessionStore";
 
 function Banner() {
   const dismissRef = useRef<HTMLDivElement>(null);
-  const { set } = useLocalStore();
   const { dismiss } = useFlowbiteDismiss(dismissRef, {
-    onHide: useCallback(() => set("hasClosedBanner", "true"), []),
+    onHide: () => console.log("hi"),
   });
 
   return (
