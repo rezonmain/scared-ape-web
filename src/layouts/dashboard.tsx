@@ -1,13 +1,8 @@
-import { Banner } from "@/components/ui/Banner/Banner";
 import { Nav } from "@/components/ui/Nav/Nav";
 import { Sidebar } from "@/components/ui/Sidebar/Sidebar";
-import { useAppStore } from "@/context/app/app.context";
-import { useLocalStore } from "@/hooks/useSessionStore";
 import { ComponentProps } from "react";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useAppStore();
-  const { get } = useLocalStore();
   const items: ComponentProps<typeof Sidebar>["items"] = [
     {
       href: "/",
@@ -24,22 +19,18 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       icon: "notepad",
       label: "Runs",
     },
+    {
+      href: "/auth/yeet",
+      icon: "close",
+      label: "Log out",
+    },
   ];
-
-  if (!user) {
-    items.push({
-      href: "/auth",
-      icon: "login",
-      label: "Log in",
-    });
-  }
 
   return (
     <>
       <Nav items={items} />
       <Sidebar items={items} />
       {children}
-      {!get("hasClosedBanner") && !user && <Banner />}
     </>
   );
 };
