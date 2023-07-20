@@ -3,7 +3,7 @@ import { LocalStorage } from "./LocalStorage";
 import {
   AuthStore,
   authStoreKeys,
-  defualtState,
+  defaultState,
 } from "@/context/auth/auth.store";
 import { api } from "@/utils/api";
 
@@ -11,7 +11,7 @@ class Auth {
   private storage = LocalStorage<AuthStore>(
     authStoreKeys,
     "auth",
-    defualtState
+    defaultState
   );
 
   get user(): User | null {
