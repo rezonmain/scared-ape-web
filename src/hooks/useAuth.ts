@@ -1,12 +1,14 @@
-import { AuthContext } from "@/context/auth/auth.context";
+import { User } from "@/models/User";
 import { auth } from "@/services/Auth";
-import { useCallback, useContext } from "react";
+import { useCallback, useMemo, useRef } from "react";
 
 const useAuth = () => {
-  const logout = useCallback(auth().logout, []);
-  const fetchUser = useCallback(auth().fetchUser, []);
-  const ctx = useContext(AuthContext);
-  return { ...ctx, logout, fetchUser };
+  const authRef = useRef(auth());
+  const logout = useCallback(authRef.current.logout, []);
+  const fetchUser = useCallback(authRef.current.fetchUser, []);
+  const setUser = useCallback((user: User | null) => (auth().user = user), []);
+  const user = useMemo(() => authRef.current.user, [authRef.current.user]);
+  return { user, logout, fetchUser, setUser };
 };
 
 export { useAuth };
