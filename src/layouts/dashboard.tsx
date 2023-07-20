@@ -1,8 +1,12 @@
 import { Nav } from "@/components/ui/Nav/Nav";
 import { Sidebar } from "@/components/ui/Sidebar/Sidebar";
-import { ComponentProps } from "react";
+import { useFlowbiteDrawer } from "@/hooks/useFlowbiteDrawer";
+import { ComponentProps, useRef } from "react";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const { drawer } = useFlowbiteDrawer(sidebarRef);
+
   const items: ComponentProps<typeof Sidebar>["items"] = [
     {
       href: "/",
@@ -28,8 +32,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <Nav items={items} />
-      <Sidebar items={items} />
+      <Nav drawer={drawer} items={items} />
+      <Sidebar ref={sidebarRef} drawer={drawer} items={items} />
       {children}
     </>
   );

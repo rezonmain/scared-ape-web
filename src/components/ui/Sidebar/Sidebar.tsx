@@ -1,25 +1,21 @@
-import { useEffect, useRef } from "react";
+import { forwardRef } from "react";
 import { Icon } from "../Icon/Icon";
 import { SidebarItem } from "./SidebarItem";
-import { useFlowbiteDrawer } from "@/hooks/useFlowbiteDrawer";
-import { useAppStore } from "@/context/app/app.context";
+import type { DrawerInterface } from "flowbite";
+import { useAuth } from "@/hooks/useAuth";
 
 type SidebarProps = {
   items: React.ComponentProps<typeof SidebarItem>[];
+  drawer?: DrawerInterface;
 };
 
-const Sidebar = (props: SidebarProps) => {
-  const targetRef = useRef<HTMLDivElement>(null);
-  const { drawer } = useFlowbiteDrawer(targetRef);
-  const { dispatch, user } = useAppStore();
-
-  useEffect(() => {
-    dispatch({ type: "set_drawer", payload: drawer });
-  }, [dispatch, drawer]);
+const Sidebar = forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
+  const { drawer, items } = props;
+  const { user } = useAuth();
 
   return (
     <div
-      ref={targetRef}
+      ref={ref}
       id="drawer-navigation"
       className="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800"
       tabIndex={-1}
@@ -41,14 +37,14 @@ const Sidebar = (props: SidebarProps) => {
       </button>
       <div className="py-4 overflow-y-auto">
         <ul className="space-y-2 font-medium">
-          {props.items.map((item) => (
-            <SidebarItem key={item.label} {...item} />
+          {items.map((item) => (
+            <SidebarItem drawer={drawer} key={item.label} {...item} />
           ))}
           {user && <SidebarItem label="Profile" icon="user" href="/profile" />}
         </ul>
       </div>
     </div>
   );
-};
+});
 
 export { Sidebar };
