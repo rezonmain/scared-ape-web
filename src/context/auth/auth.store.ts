@@ -1,12 +1,14 @@
 import type { User } from "@/models/User";
 
-interface AuthStore {
+type AuthStore = {
   user: User | null;
-}
+};
+
+const authStoreKeys: (keyof AuthStore)[] = ["user"];
 
 const defualtState: AuthStore = {
   user: null,
 };
 
 export type { AuthStore };
-export { defualtState };
+export { defualtState, authStoreKeys };
