@@ -20,13 +20,14 @@ class LocalStorage<T extends Record<string, unknown>> {
   private loadValues(initial: T) {
     const values = this.getAll();
     if (values) return this.loadValuesFromLocalStorage(values);
-    return this.loadFromInitialValues(initial);
+    this.loadFromInitialValues(initial);
   }
 
   private loadFromInitialValues(initial: T) {
     Object.entries(initial).forEach(([key, value]) => {
       this.store.set(key as keyof T, value);
     });
+    localStorage.setItem(this.globalKey, JSON.stringify(initial));
   }
 
   private loadValuesFromLocalStorage(values?: T) {
