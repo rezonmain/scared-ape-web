@@ -1,4 +1,5 @@
 import { UserDto } from "@/dto/auth.dto";
+import { auth } from "@/services/Auth";
 import { ApiError } from "@/types/ApiResponse";
 import { api } from "@/utils/api";
 import { redirect, type Params } from "react-router-dom";
@@ -9,14 +10,8 @@ async function challengeLoader({ params }: { params: Params }) {
     redirect("/auth");
   }
   try {
-    const user = await api<UserDto>(`/auth/challenge/${params.token}`);
-    const redirectParams = new URLSearchParams({
-      cuid: user.cuid,
-      email: user.email,
-      role: user.role,
-      whitelist: user.whitelist.toString(),
-    }).toString();
-    return redirect(`/dashboard?${redirectParams}`);
+    auth.user = await api<UserDto>(`/auth/challenge/${params.token}`);
+    return redirect(`/dashboard`);
   } catch (error) {
     if (error instanceof ApiError) {
       const redirectParams = new URLSearchParams({
