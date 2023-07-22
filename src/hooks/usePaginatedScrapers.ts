@@ -55,7 +55,7 @@ const queryReducer = (
 ): QueryParams => {
   switch (action.type) {
     case "limit":
-      return { ...state, limit: action.value, page: "1" };
+      return { ...state, limit: action.value, page: "0" };
     case "page":
       return { ...state, page: action.value };
     default:

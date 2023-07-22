@@ -2,7 +2,7 @@ import { usePaginatedScrapers } from "@/hooks/usePaginatedScrapers";
 import { Skeleton } from "../ui/Skeleton/Skeleton";
 import { ScraperCard } from "../ScraperCard/ScraperCard";
 
-const DashboardScrapers = () => {
+const ScrapersList = () => {
   const { list, isLoading } = usePaginatedScrapers();
 
   return (
@@ -16,4 +16,4 @@ const DashboardScrapers = () => {
   );
 };
 
-export { DashboardScrapers };
+export { ScrapersList };

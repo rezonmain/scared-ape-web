@@ -1,5 +1,7 @@
+import { ScrapersList } from "@/components/ScrapersList/ScrapersList";
+
 function ScraperPage() {
-  return <div>scraper</div>;
+  return <ScrapersList />;
 }
 
 export { ScraperPage };
