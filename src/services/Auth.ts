@@ -32,6 +32,11 @@ class Auth {
   }
 }
 
-const auth = () => new Auth();
+const globalWithAuth = globalThis as unknown as {
+  auth: Auth | undefined;
+};
+
+const auth = globalWithAuth.auth ?? new Auth();
+globalWithAuth.auth = auth;
 
 export { auth };
