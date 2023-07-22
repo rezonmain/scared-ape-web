@@ -1,15 +1,21 @@
+type LocalStorageOptions<T> = {
+  storageKeys: (keyof T)[];
+  globalKey: string;
+  initialValues: T;
+};
+
 class LocalStorage<T extends Record<string, unknown>> {
   private store: Map<keyof T, unknown>;
   private globalKey: string;
   private keys: (keyof T)[];
 
-  constructor(storageKeys: (keyof T)[], globalKey: string, initialValues: T) {
+  constructor(opts: LocalStorageOptions<T>) {
     this.store = new Map();
-    this.globalKey = globalKey;
-    this.keys = storageKeys;
-    this.loadValues(initialValues);
+    this.globalKey = opts.globalKey;
+    this.keys = opts.storageKeys;
+    this.loadValues(opts.initialValues);
     // Dynamically define object getters and setters from storage keys
-    for (const key of storageKeys) {
+    for (const key of opts.storageKeys) {
       Object.defineProperty(this, key, {
         get: () => this.getIt(key),
         set: (value) => this.setIt(key, value),
@@ -80,11 +86,8 @@ class LocalStorage<T extends Record<string, unknown>> {
 type StorageModel<T extends Record<string, unknown>> = { [P in keyof T]: T[P] };
 
 const LocalStorageFactory = <T extends Record<string, unknown>>(
-  storageKeys: (keyof T)[],
-  globalKey: string,
-  initialValues: T
+  opts: LocalStorageOptions<T>
 ): LocalStorage<T> & StorageModel<T> =>
-  new LocalStorage(storageKeys, globalKey, initialValues) as LocalStorage<T> &
-    StorageModel<T>;
+  new LocalStorage(opts) as LocalStorage<T> & StorageModel<T>;
 
 export { LocalStorageFactory as LocalStorage };

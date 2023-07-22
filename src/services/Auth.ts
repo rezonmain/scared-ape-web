@@ -8,11 +8,11 @@ import {
 import { api } from "@/utils/api";
 
 class Auth {
-  private storage = LocalStorage<AuthStore>(
-    authStoreKeys,
-    "auth",
-    defaultState
-  );
+  private storage = LocalStorage<AuthStore>({
+    storageKeys: authStoreKeys,
+    globalKey: "auth",
+    initialValues: defaultState,
+  });
 
   get user(): User | null {
     return this.storage.user;
