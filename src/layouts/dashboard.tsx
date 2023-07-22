@@ -24,6 +24,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       label: "Runs",
     },
     {
+      href: "/auth",
+      icon: "login",
+      label: "Log in",
+    },
+    {
       href: "/auth/yeet",
       icon: "close",
       label: "Log out",
