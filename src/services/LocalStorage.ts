@@ -57,11 +57,11 @@ class LocalStorage<T extends Record<string, unknown>> {
   }
 
   private setIt(key: keyof T, value: unknown) {
+    this.store.set(key, value);
     localStorage.setItem(
       this.globalKey,
       JSON.stringify(Object.fromEntries(this.store))
     );
-    this.store.set(key, value);
   }
 
   getAll() {
