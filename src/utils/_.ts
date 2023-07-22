@@ -24,3 +24,8 @@ export const isNothing = (value: unknown): boolean => {
   }
   return false;
 };
+
+export const first = <T>(arr: Array<T>) => {
+  if (arr.length < 1) return undefined;
+  return arr[0];
+};
