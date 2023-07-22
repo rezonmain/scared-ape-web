@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 import { Icon } from "../Icon/Icon";
 import { Link } from "react-router-dom";
-import { isNothing } from "@/utils/ez";
+import { isNothing } from "@/utils/_";
 import { DrawerInterface } from "flowbite";
 
 type SidebarItemProps = {
