@@ -4,12 +4,18 @@ import { IScraper } from "@/models/Scraper";
 import { Tooltip } from "../ui/Tooltip/Tooltip";
 import { Button } from "../ui/Button/Button";
 import { useAuth } from "@/hooks/useAuth";
+import { LazyAccordion } from "../ui/LazyAccordion/LazyAccordion";
+import {
+  ScraperWidget,
+  ScraperWidgetProps,
+} from "../ScraperWidget/ScraperWidget";
 
 interface ScraperCardProps {
   scraper: IScraper;
+  widget?: ScraperWidgetProps["widget"];
 }
 
-const ScraperCard = ({ scraper }: ScraperCardProps) => {
+const ScraperCard = ({ scraper, widget }: ScraperCardProps) => {
   const { user } = useAuth();
   return (
     <div className="format max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -55,6 +61,11 @@ const ScraperCard = ({ scraper }: ScraperCardProps) => {
           Manage scraper
         </Button>
       </div>
+      {widget && (
+        <LazyAccordion summary="Show Widget">
+          <ScraperWidget widget={widget} />
+        </LazyAccordion>
+      )}
     </div>
   );
 };
