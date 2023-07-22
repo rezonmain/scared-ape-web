@@ -1,8 +1,8 @@
-import { IPagination } from "@/types/Pagination";
+// import { IPagination } from "@/types/Pagination";
 
-interface PaginationProps extends IPagination {
-  onPageChange: (page: number) => void;
-}
+// interface PaginationProps extends IPagination {
+//   onPageChange: (page: number) => void;
+// }
 
 const Pagination = () => {
   return (

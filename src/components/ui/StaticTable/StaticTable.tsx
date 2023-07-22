@@ -1,8 +1,8 @@
-interface StaticTableProps<T> {
-  columns: React.ReactNode[];
-  data: T;
-  renderRow?: (row: T) => React.ReactNode;
-}
+// interface StaticTableProps<T> {
+//   columns: React.ReactNode[];
+//   data: T;
+//   renderRow?: (row: T) => React.ReactNode;
+// }
 
 const StaticTable = () => {
   return (
