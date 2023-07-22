@@ -1,1 +1,1 @@
-export { YeetPage as Component } from "./page";
+export { yeetLoader as loader } from "./loader";
