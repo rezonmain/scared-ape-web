@@ -17,7 +17,7 @@ const useFlowbiteTooltip = (
     };
 
     setTooltip(new Tooltip(target.current, trigger.current, options));
-  }, [JSON.stringify(target), JSON.stringify(opts)]);
+  }, [target, JSON.stringify(opts)]);
 
   return {
     tooltip,

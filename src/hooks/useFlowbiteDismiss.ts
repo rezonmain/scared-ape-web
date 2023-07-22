@@ -17,7 +17,7 @@ const useFlowbiteDismiss = (
     };
 
     setDismiss(new Dismiss(target.current, null, options));
-  }, [JSON.stringify(target), JSON.stringify(opts)]);
+  }, [target, JSON.stringify(opts)]);
 
   return {
     dismiss,
