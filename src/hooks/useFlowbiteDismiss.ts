@@ -1,7 +1,6 @@
 import { Dismiss } from "flowbite";
 import type { DismissOptions } from "flowbite";
-import { RefObject, useState } from "react";
-import useDeepCompareEffect from "use-deep-compare-effect";
+import { RefObject, useEffect, useState } from "react";
 
 const useFlowbiteDismiss = (
   target: RefObject<HTMLElement>,
@@ -9,7 +8,7 @@ const useFlowbiteDismiss = (
 ) => {
   const [dismiss, setDismiss] = useState<Dismiss | null>(null);
 
-  useDeepCompareEffect(() => {
+  useEffect(() => {
     const options: DismissOptions = {
       transition: "transition-opacity",
       duration: 250,
@@ -18,7 +17,7 @@ const useFlowbiteDismiss = (
     };
 
     setDismiss(new Dismiss(target.current, null, options));
-  }, [target, opts]);
+  }, [JSON.stringify(target), JSON.stringify(opts)]);
 
   return {
     dismiss,

@@ -1,7 +1,6 @@
 import { Tooltip } from "flowbite";
 import type { TooltipInterface, TooltipOptions } from "flowbite";
-import { RefObject, useState } from "react";
-import useDeepCompareEffect from "use-deep-compare-effect";
+import { RefObject, useEffect, useState } from "react";
 
 const useFlowbiteTooltip = (
   target: RefObject<HTMLElement>,
@@ -10,7 +9,7 @@ const useFlowbiteTooltip = (
 ) => {
   const [tooltip, setTooltip] = useState<TooltipInterface | null>(null);
 
-  useDeepCompareEffect(() => {
+  useEffect(() => {
     const options: TooltipOptions = {
       placement: "top",
       triggerType: "hover",
@@ -18,7 +17,7 @@ const useFlowbiteTooltip = (
     };
 
     setTooltip(new Tooltip(target.current, trigger.current, options));
-  }, [target, opts]);
+  }, [JSON.stringify(target), JSON.stringify(opts)]);
 
   return {
     tooltip,
