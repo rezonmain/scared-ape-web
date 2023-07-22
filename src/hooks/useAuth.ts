@@ -10,8 +10,15 @@ const useAuth = () => {
     (user: User | null) => (authRef.current.user = user),
     []
   );
-  const user = useMemo(() => authRef.current.user, [authRef.current.user]);
-  return { user, logout, fetchUser, setUser };
+  const isAuth = useMemo(
+    () => !!authRef.current.user,
+    [JSON.stringify(authRef.current.user)]
+  );
+  const user = useMemo(
+    () => authRef.current.user,
+    [JSON.stringify(authRef.current.user)]
+  );
+  return { user, isAuth, logout, fetchUser, setUser };
 };
 
 export { useAuth };
