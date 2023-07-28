@@ -39,6 +39,10 @@ const router = createBrowserRouter(
         />
         <Route path="yeet" lazy={() => import("./routes/auth/yeet")} />
       </Route>
+      <Route
+        path="/request-access"
+        lazy={() => import("./routes/request-access")}
+      />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Route>
   )
