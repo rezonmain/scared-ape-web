@@ -10,7 +10,7 @@ export function RequestAccessPage() {
   const [params] = useSearchParams();
 
   return (
-    <div className="mx-auto h-screen flex items-center justify-center flex-col max-w-sm">
+    <div className="mx-auto h-full flex items-center justify-center flex-col max-w-sm">
       <Alert
         title="Requesting access"
         type="default"
@@ -21,13 +21,14 @@ export function RequestAccessPage() {
           Request access
         </h1>
         {!params.has("accessRequestEmail") ? (
-          <Form method="post" className="flex flex-col gap-4 mt-8">
+          <Form method="post" className="flex flex-col gap-4 mt-8" e>
             <Input
               required
               type="email"
               id="email"
               name="email"
               label="Email"
+              placeholder="user@acme.com"
               error={data?.error?.content?.error ?? undefined}
             />
             <Button type="submit">Submit</Button>
