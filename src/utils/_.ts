@@ -29,3 +29,18 @@ export const first = <T>(arr: Array<T>) => {
   if (arr.length < 1) return undefined;
   return arr[0];
 };
+
+/**
+ * Parses a cookie string into a key value pair object.
+ */
+export const parseCookie = (
+  cookie: string | undefined
+): Record<string, string> => {
+  const parsed: Record<string, string> = {};
+  if (isNothing(cookie) || !cookie) return parsed;
+  cookie.split(";").forEach((pair) => {
+    const [key, value] = pair.split("=");
+    parsed[key.trim()] = value;
+  });
+  return parsed;
+};
