@@ -20,8 +20,8 @@ export function RequestAccessPage() {
         <h1 className="text-2xl font-semibold text-gray-700 dark:text-white text-center ">
           Request access
         </h1>
-        {!params.has("accessRequestEmail") ? (
-          <Form method="post" className="flex flex-col gap-4 mt-8" e>
+        {!params.has("email") ? (
+          <Form method="post" className="flex flex-col gap-4 mt-8">
             <Input
               required
               type="email"
@@ -36,20 +36,39 @@ export function RequestAccessPage() {
         ) : (
           <div className="mt-2 text-sm text-gray-500 dark:text-gray-400 text-center">
             <p>
-              Hey, thanks for requesting access, if approved you'll receive an
-              email at this address: {params.get("accessRequestEmail")}. See ya.
+              Hey, thanks for requesting access, if approved you'll be notified
+              at this email address: <strong>{params.get("email")}</strong>
             </p>
           </div>
         )}
-        <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-          Oops, not meant to be here?, don't worry{" "}
-          <Link
-            className="text-blue-600 hover:underline dark:text-blue-500"
-            to="/auth"
-          >
-            click here to return to the login page
-          </Link>
-        </p>
+        {!params.has("email") ? (
+          <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+            Oops, not meant to be here?, don't worry{" "}
+            <Link
+              className="text-blue-600 hover:underline dark:text-blue-500"
+              to="/auth"
+            >
+              click here to return to the login page
+            </Link>
+          </p>
+        ) : (
+          <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+            Made a typo?{" "}
+            <Link
+              className="text-blue-600 hover:underline dark:text-blue-500"
+              to="/request-access?new="
+            >
+              request access again
+            </Link>{" "}
+            or{" "}
+            <Link
+              className="text-blue-600 hover:underline dark:text-blue-500"
+              to="/auth"
+            >
+              got back to login
+            </Link>
+          </p>
+        )}
       </Box>
     </div>
   );
