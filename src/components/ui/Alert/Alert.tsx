@@ -64,7 +64,7 @@ const variants = {
   },
   default: {
     container:
-      "text-gray-800 border-gray-300 bg-gray-50 dark:text-gray-400 dark:border-gray-800",
+      "text-gray-800 border-gray-300 bg-gray-50 dark:text-gray-400 dark:border-gray-700",
     dismissBtn:
       "border-gray-800 hover:bg-gray-900 focus:ring-gray-200 dark:hover:bg-gray-600 dark:border-gray-600 dark:text-gray-500 dark:hover:text-white dark:focus:ring-gray-800",
     actionBtn:
