@@ -26,11 +26,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   const items: ComponentProps<typeof Sidebar>["items"] = [
     {
-      href: "/",
-      icon: "dashboard",
-      label: "Dashboard",
-    },
-    {
       href: "/scraper",
       icon: "scraper",
       label: "Scrapers",
@@ -41,16 +36,19 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       label: "Runs",
     },
     {
-      href: "/auth",
-      icon: "login",
-      label: "Log in",
+      href: "/access-request",
+      icon: "user",
+      label: "Access requests",
     },
-    {
+  ];
+
+  if (isAuth) {
+    items.push({
       href: "/auth/yeet",
       icon: "close",
       label: "Log out",
-    },
-  ];
+    });
+  }
 
   return (
     <>
