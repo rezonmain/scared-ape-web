@@ -10,7 +10,7 @@ export function AuthPage() {
   const [params] = useSearchParams();
 
   return (
-    <div className="mx-auto h-screen flex items-center justify-center flex-col max-w-sm">
+    <div className="mx-auto h-full flex items-center justify-center flex-col max-w-sm">
       {params.has("challengeError") && (
         <>
           <Alert
