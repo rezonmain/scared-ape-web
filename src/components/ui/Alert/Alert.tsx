@@ -11,7 +11,7 @@ export interface AlertProps {
     label: string;
     action: () => void;
   };
-  canDissmiss?: boolean;
+  canDismiss?: boolean;
   onDismiss?: () => void;
 }
 
@@ -74,7 +74,7 @@ const variants = {
 
 const Alert = ({
   type = "default",
-  canDissmiss = true,
+  canDismiss = true,
   ...props
 }: Omit<AlertProps, "id">) => {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -92,7 +92,9 @@ const Alert = ({
         <span className="sr-only">Info</span>
         <h3 className="text-lg font-medium">{props.title}</h3>
       </div>
-      <div className="mt-2 mb-4 text-sm">{props.message}</div>
+      <div className="mt-2 mb-4 text-sm">
+        <p className="format">{props.message}</p>
+      </div>
       <div className="flex">
         {props.action && (
           <button
@@ -103,7 +105,7 @@ const Alert = ({
             {props.action?.label}
           </button>
         )}
-        {canDissmiss && (
+        {canDismiss && (
           <button
             onClick={() => {
               if (props.onDismiss) {
