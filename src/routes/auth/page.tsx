@@ -32,6 +32,7 @@ export function AuthPage() {
               id="email"
               name="email"
               label="Email"
+              placeholder="user@acme.com"
               error={data?.error?.content?.error ?? undefined}
             />
             <Button type="submit">Log in</Button>
