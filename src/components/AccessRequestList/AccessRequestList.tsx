@@ -1,9 +1,9 @@
-import { AccessRequest } from "@/models/AccessRequest";
+// import { AccessRequest } from "@/models/AccessRequest";
 
-type AccessRequestProps = {
-  list: AccessRequest[];
-};
-const AccessRequestList = ({ list }: AccessRequestProps) => {
+// type AccessRequestProps = {
+//   list: AccessRequest[];
+// };
+const AccessRequestList = () => {
   return <></>;
 };
 
