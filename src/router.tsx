@@ -27,6 +27,10 @@ const router = createBrowserRouter(
         <Route path="/" lazy={() => import("./routes/index")} />
         <Route path="/scraper" lazy={() => import("./routes/scraper")} />
         <Route path="/run" element={<div>Run</div>} />
+        <Route
+          path="/access-request"
+          lazy={() => import("./routes/access-request")}
+        />
       </Route>
       <Route path="/auth" lazy={() => import("./routes/auth")}>
         <Route
