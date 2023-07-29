@@ -1,9 +1,9 @@
 import useSWR from "swr";
-import { useReducer } from "react";
+import { useCallback } from "react";
 import { Paginated } from "@/types/Pagination";
 import { FetchKey } from "@/types/FetchKey";
 import { api } from "@/utils/api";
-import { ActionOf } from "@/types/ActionOf";
+import { useSearchParams } from "react-router-dom";
 
 type QueryParams = {
   limit: string;
@@ -13,13 +13,13 @@ type QueryParams = {
 type R<T> = {
   isLoading: boolean;
   error: Error;
-  setQuery: React.Dispatch<ActionOf<QueryParams>>;
+  setQuery: (query: Partial<QueryParams>) => void;
   query: QueryParams;
 } & Paginated<T>;
 
 const initialQuery: QueryParams = {
   limit: "10",
-  page: "0",
+  page: "1",
 };
 
 /**
@@ -29,10 +29,15 @@ const usePaginatedList = <T>(
   resource: "scraper" | "access-request",
   init: QueryParams = initialQuery
 ): R<T> => {
-  const [query, dispatch] = useReducer(queryReducer, init);
+  const [searchParams, setSearchParams] = useSearchParams(init);
+  const setQuery = useCallback(
+    (query: Partial<QueryParams>) => setSearchParams(query),
+    []
+  );
+
   const key: FetchKey = {
     method: "get",
-    url: `/${resource}?${new URLSearchParams(init)}`,
+    url: `/${resource}?${searchParams}`,
   };
 
   const { data, isLoading, error } = useSWR(key, api<Paginated<T>>, {
@@ -44,23 +49,9 @@ const usePaginatedList = <T>(
     ...data,
     isLoading,
     error,
-    setQuery: dispatch,
-    query,
+    setQuery,
+    query: Object.fromEntries(searchParams) as QueryParams,
   };
-};
-
-const queryReducer = (
-  state: QueryParams,
-  action: ActionOf<QueryParams>
-): QueryParams => {
-  switch (action.type) {
-    case "limit":
-      return { ...state, limit: action.value, page: "0" };
-    case "page":
-      return { ...state, page: action.value };
-    default:
-      return state;
-  }
 };
 
 export { usePaginatedList };
