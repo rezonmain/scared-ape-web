@@ -39,7 +39,7 @@ const PaginatedTableRow = forwardRef<
       {...rest}
       ref={ref}
       data-rid={rid}
-      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
     >
       {selectable && (
         <td className="w-4 p-4">
