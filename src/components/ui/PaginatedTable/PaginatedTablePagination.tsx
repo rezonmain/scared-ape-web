@@ -2,41 +2,46 @@ import { useContext, useMemo } from "react";
 import { PaginatedTableContext } from "./PaginatedTable.context";
 
 const PaginatedTablePagination = () => {
-  const { pagination, onPageChange } = useContext(PaginatedTableContext);
+  const {
+    pagination: { data },
+    onPageChange,
+  } = useContext(PaginatedTableContext);
 
   const [firstRecordOfPage, lastRecordOfPage] = useMemo(() => {
-    const recordsPerPage = Math.ceil(
-      pagination.totalRecords / pagination.totalPages
-    );
     return [
-      pagination.currentPage * recordsPerPage + 1,
-      (pagination.currentPage + 1) * recordsPerPage,
+      (data.currentPage - 1) * data.pageSize + 1,
+      data.nextPage
+        ? data.pageSize * data.currentPage
+        : (data.totalRecords % data.pageSize) +
+          (data.currentPage - 1) * data.pageSize,
     ];
-  }, [pagination.totalRecords, pagination.totalPages, pagination.currentPage]);
+  }, [data.totalRecords, data.totalPages, data.currentPage]);
 
   return (
     <nav
-      className="flex items-center justify-between pt-4"
+      className="flex items-center justify-between py-4"
       aria-label="Table navigation"
     >
       <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
         Showing{" "}
-        <span className="font-semibold text-gray-900 dark:text-white"></span>{" "}
-        {firstRecordOfPage}-{lastRecordOfPage} of{" "}
         <span className="font-semibold text-gray-900 dark:text-white">
-          {pagination.totalRecords}
+          {firstRecordOfPage}-{lastRecordOfPage}
+        </span>{" "}
+        of{" "}
+        <span className="font-semibold text-gray-900 dark:text-white">
+          {data.totalRecords}
         </span>
       </span>
       <ul className="inline-flex -space-x-px text-sm h-8">
         <li>
           <a
             onClick={
-              pagination.previouPage
-                ? () => onPageChange?.(pagination.previouPage)
+              data.previousPage
+                ? () => onPageChange?.(data.previousPage)
                 : undefined
             }
-            data-noaction={pagination.previouPage === null}
-            className="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white data-[noaction=true]:cursor-not-allowed"
+            data-noaction={data.previousPage === null}
+            className="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg data-[noaction=false]:hover:bg-gray-100 data-[noaction=false]:hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 data-[noaction=false]:dark:hover:bg-gray-700 data-[noaction=false]:dark:hover:text-white cursor-pointer data-[noaction=true]:cursor-not-allowed"
           >
             Previous
           </a>
@@ -44,12 +49,10 @@ const PaginatedTablePagination = () => {
         <li>
           <a
             onClick={
-              pagination.nextPage
-                ? () => onPageChange?.(pagination.nextPage)
-                : undefined
+              data.nextPage ? () => onPageChange?.(data.nextPage) : undefined
             }
-            data-noaction={pagination.nextPage === null}
-            className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white data-[noaction=true]:cursor-not-allowed"
+            data-noaction={data.nextPage === null}
+            className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg data-[noaction=false]:hover:bg-gray-100 data-[noaction=false]:hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 data-[noaction=false]:dark:hover:bg-gray-700 data-[noaction=false]:dark:hover:text-white cursor-pointer data-[noaction=true]:cursor-not-allowed"
           >
             Next
           </a>
