@@ -11,7 +11,10 @@ type PaginatedTableProps<T extends Array<unknown>> = {
   onRowSelect?: (row: T[number]) => void;
   onSelectAll?: (data: T) => void;
   onPageChange?: (page: number | null) => void;
-  pagination: IPagination;
+  pagination: {
+    position?: "top" | "bottom" | "both";
+    data: IPagination;
+  };
 };
 
 const PaginatedTable = <T extends Array<unknown>>(
@@ -38,15 +41,16 @@ const PaginatedTable = <T extends Array<unknown>>(
         onSelectAll,
       }}
     >
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+      {pagination.position !== "bottom" && <PaginatedTablePagination />}
+      <div className="relative overflow-x-auto sm:rounded-lg">
         <table
           {...rest}
           className="w-full text-sm text-left text-gray-500 dark:text-gray-400"
         >
           {children}
         </table>
-        <PaginatedTablePagination />
       </div>
+      {pagination.position !== "top" && <PaginatedTablePagination />}
     </PaginatedTableContext.Provider>
   );
 };
