@@ -14,15 +14,6 @@ type PaginatedTableProps<T extends Array<unknown>> = {
   pagination: IPagination;
 };
 
-export type CompoundedPaginatedTable<T extends Array<unknown>> =
-  React.ForwardRefExoticComponent<
-    PaginatedTableProps<T> & React.RefAttributes<HTMLOptionElement>
-  > & {
-    Body: typeof PaginatedTableBody;
-    Header: typeof PaginatedTableHeader;
-    Row: typeof PaginatedTableRow;
-  };
-
 const PaginatedTable = <T extends Array<unknown>>(
   props: React.PropsWithChildren<PaginatedTableProps<T>>
 ) => {
