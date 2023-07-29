@@ -42,7 +42,7 @@ const PaginatedTable = <T extends Array<unknown>>(
       }}
     >
       {pagination.position !== "bottom" && <PaginatedTablePagination />}
-      <div className="relative overflow-x-auto sm:rounded-lg">
+      <div className="relative overflow-x-auto sm:rounded-lg shadow-md dark:shadow-none">
         <table
           {...rest}
           className="w-full text-sm text-left text-gray-500 dark:text-gray-400"
