@@ -44,3 +44,6 @@ export const parseCookie = (
   });
   return parsed;
 };
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export function nop() {}
