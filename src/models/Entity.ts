@@ -1,5 +1,5 @@
 export interface Entity {
   readonly id?: number | bigint;
-  readonly createdAt?: Date;
-  readonly updatedAt?: Date;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
 }
