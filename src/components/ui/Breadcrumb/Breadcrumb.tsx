@@ -7,7 +7,7 @@ const Breadcrumb = () => {
   const { crumbs } = useBreadcrumb();
   return (
     <nav
-      className="flex max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+      className="flex max-w-screen-xl flex-wrap items-center justify-between mx-auto p-4"
       aria-label="Breadcrumb"
     >
       <ol className="inline-flex items-center space-x-1 md:space-x-3">
