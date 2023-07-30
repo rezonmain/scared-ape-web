@@ -1,5 +1,5 @@
 const Footer = () => (
-  <footer className="w-full text-center mt-auto flex flex-col items-center">
+  <footer className="w-full text-center mt-16 flex flex-col items-center">
     <small className="format text-sm">
       &copy; {new Date().getFullYear()} made with 💝 by rezonmain
     </small>
