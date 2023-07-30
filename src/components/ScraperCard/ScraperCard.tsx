@@ -1,4 +1,5 @@
 import { FaTelegram, FaClock } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
 import ms from "ms";
 import { IScraper } from "@/models/Scraper";
 import { Tooltip } from "../ui/Tooltip/Tooltip";
@@ -9,6 +10,8 @@ import {
   ScraperWidget,
   ScraperWidgetProps,
 } from "../ScraperWidget/ScraperWidget";
+import { useMemo } from "react";
+import { Box } from "../ui/Box/Box";
 
 interface ScraperCardProps {
   scraper: IScraper;
@@ -17,8 +20,14 @@ interface ScraperCardProps {
 
 const ScraperCard = ({ scraper, widget }: ScraperCardProps) => {
   const { user } = useAuth();
+  const { pathname } = useLocation();
+  const atPage = useMemo(() => pathname.includes(scraper.knownId), [pathname]);
+
   return (
-    <div className="format max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <Box
+      data-onitsown={atPage}
+      className="format max-w-sm data-[onitsown='true']:max-w-none"
+    >
       <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         {scraper.name}
       </h5>
@@ -49,24 +58,39 @@ const ScraperCard = ({ scraper, widget }: ScraperCardProps) => {
           </div>
         </Tooltip>
       </div>
-      <div className="flex flex-row justify-start gap-4">
-        <Button className="block mt-4" disabled={!user || user.role !== "pyro"}>
+      {atPage && (
+        <a
+          className="text-blue-600 hover:underline dark:text-blue-500 inline-block mt-4"
+          href={scraper.url}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Go to scraped page
+        </a>
+      )}
+      <div className="flex flex-row flex-wrap justify-start gap-2 items-baseline mt-4">
+        {!atPage ? (
+          <Link className="no-underline" to={`/scraper/${scraper.knownId}`}>
+            <Button disabled={!user}>Manage scraper</Button>
+          </Link>
+        ) : (
+          <Button disabled={!user || user.role !== "pyro"}>Scrape now</Button>
+        )}
+        <Button variant="primary-outline" disabled={!user}>
           See runs
         </Button>
-        <Button
-          variant="primary-outline"
-          className="block mt-4"
-          disabled={!user || user.role !== "pyro"}
-        >
-          Manage scraper
-        </Button>
+        {atPage && (
+          <Button variant="danger" disabled={!user || user.role !== "pyro"}>
+            Deactivate
+          </Button>
+        )}
       </div>
       {widget && (
         <LazyAccordion summary="Show Widget">
           <ScraperWidget widget={widget} />
         </LazyAccordion>
       )}
-    </div>
+    </Box>
   );
 };
 
