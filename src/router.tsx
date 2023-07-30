@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { DashboardLayout } from "./layouts/dashboard";
 import { GlobalLayout } from "./layouts/global";
+import { FloatingLayout } from "./layouts/floating";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,17 +33,25 @@ const router = createBrowserRouter(
           lazy={() => import("./routes/access-request")}
         />
       </Route>
-      <Route path="/auth" lazy={() => import("./routes/auth")}>
-        <Route
-          path="challenge/:token"
-          lazy={() => import("./routes/auth/challenge")}
-        />
-        <Route path="yeet" lazy={() => import("./routes/auth/yeet")} />
-      </Route>
       <Route
-        path="/request-access"
-        lazy={() => import("./routes/request-access")}
-      />
+        element={
+          <FloatingLayout>
+            <Outlet />
+          </FloatingLayout>
+        }
+      >
+        <Route path="/auth" lazy={() => import("./routes/auth")}>
+          <Route
+            path="challenge/:token"
+            lazy={() => import("./routes/auth/challenge")}
+          />
+          <Route path="yeet" lazy={() => import("./routes/auth/yeet")} />
+        </Route>
+        <Route
+          path="/request-access"
+          lazy={() => import("./routes/request-access")}
+        />
+      </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Route>
   )
