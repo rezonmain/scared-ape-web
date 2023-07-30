@@ -6,8 +6,8 @@ import { api } from "@/utils/api";
 import { useSearchParams } from "react-router-dom";
 
 type QueryParams = {
-  limit: string;
-  page: string;
+  limit?: string;
+  page?: string;
 };
 
 type R<T> = {
@@ -29,9 +29,24 @@ const usePaginatedList = <T>(
   resource: "scraper" | "access-request",
   init: QueryParams = initialQuery
 ): R<T> => {
-  const [searchParams, setSearchParams] = useSearchParams(init);
+  const [searchParams, setSearchParams] = useSearchParams({
+    ...initialQuery,
+    ...init,
+  });
+
   const setQuery = useCallback(
-    (query: Partial<QueryParams>) => setSearchParams(query),
+    (query: Partial<QueryParams>) =>
+      setSearchParams((prev) => {
+        const params = new URLSearchParams(prev);
+        Object.entries(query).forEach(([key, value]) => {
+          if (value) {
+            params.set(key, value);
+          } else {
+            params.delete(key);
+          }
+        });
+        return params;
+      }),
     []
   );
 
