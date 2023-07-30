@@ -32,7 +32,7 @@ function AccessRequestPage() {
 
   if (accessRequests && pagination)
     return (
-      <div className="mx-auto p-16 max-w-[1280px]">
+      <div className="mx-auto max-w-[90vw] lg:max-w-4xl">
         <PaginatedTable
           data={accessRequests}
           pagination={{
