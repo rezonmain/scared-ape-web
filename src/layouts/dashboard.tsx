@@ -57,10 +57,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row min-h-full">
       <Sidebar ref={sidebarRef} items={items} drawer={drawer} />
       <div className="flex-1 pt-2 flex flex-col">
-        <section className="flex-1">
+        <section className="flex-1 px-4 min-h-full">
           <Nav drawer={drawer} />
           {children}
         </section>
