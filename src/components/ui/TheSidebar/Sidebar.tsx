@@ -17,7 +17,7 @@ const Sidebar = forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
     <div
       ref={ref}
       id="drawer-navigation"
-      className="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800"
+      className="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800 lg:translate-x-0 lg:sticky lg:inset-0 lg:min-h-full"
       tabIndex={-1}
     >
       <h5
@@ -40,7 +40,9 @@ const Sidebar = forwardRef<HTMLDivElement, SidebarProps>((props, ref) => {
           {items.map((item) => (
             <SidebarItem drawer={drawer} key={item.label} {...item} />
           ))}
-          {user && <SidebarItem label="Profile" icon="user" href="/profile" />}
+          {user && (
+            <SidebarItem label="Profile" icon="profile" href="/profile" />
+          )}
         </ul>
       </div>
     </div>
