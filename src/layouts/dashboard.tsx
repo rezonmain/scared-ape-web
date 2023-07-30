@@ -43,7 +43,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     },
     {
       href: "/access-request",
-      icon: "user",
+      icon: "users",
       label: "Access requests",
     },
   ];
@@ -51,7 +51,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   if (isAuth) {
     items.push({
       href: "/auth/yeet",
-      icon: "close",
+      icon: "logout",
       label: "Log out",
     });
   }
@@ -59,12 +59,12 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex flex-row min-h-full">
       <Sidebar ref={sidebarRef} items={items} drawer={drawer} />
-      <div className="flex-1 pt-2 flex flex-col">
+      <div className="flex-1 flex flex-col">
         <section className="flex-1 px-4 min-h-full">
           <Nav drawer={drawer} />
           {children}
+          <Footer />
         </section>
-        <Footer />
       </div>
     </div>
   );
