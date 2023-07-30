@@ -3,6 +3,6 @@ import { redirect } from "react-router-dom";
 
 async function yeetLoader() {
   auth.logout();
-  return redirect("/");
+  return redirect("/auth");
 }
 export { yeetLoader };
