@@ -32,6 +32,10 @@ const router = createBrowserRouter(
           path="/access-request"
           lazy={() => import("./routes/access-request")}
         />
+        <Route
+          path="/scraper/:knownId"
+          lazy={() => import("./routes/scraper/[knownId]")}
+        />
       </Route>
       <Route
         element={
