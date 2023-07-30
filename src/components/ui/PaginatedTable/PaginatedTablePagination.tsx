@@ -41,7 +41,7 @@ const PaginatedTablePagination = () => {
                 : undefined
             }
             data-noaction={data.previousPage === null}
-            className="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg data-[noaction=false]:hover:bg-gray-100 data-[noaction=false]:hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 data-[noaction=false]:dark:hover:bg-gray-700 data-[noaction=false]:dark:hover:text-white cursor-pointer data-[noaction=true]:cursor-not-allowed"
+            className="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 data-[noaction='true']:text-gray-300 bg-white border border-gray-300 data-[noaction='true']:border-none rounded-l-lg data-[noaction=false]:hover:bg-gray-100 data-[noaction=false]:hover:text-gray-700 dark:bg-gray-800 data-[noaction='true']:dark:bg-transparent dark:border-gray-700 dark:text-gray-400 data-[noaction='true']:dark:text-gray-600 data-[noaction=false]:dark:hover:bg-gray-700 data-[noaction=false]:dark:hover:text-white cursor-pointer data-[noaction=true]:cursor-not-allowed"
           >
             Previous
           </a>
@@ -52,7 +52,7 @@ const PaginatedTablePagination = () => {
               data.nextPage ? () => onPageChange?.(data.nextPage) : undefined
             }
             data-noaction={data.nextPage === null}
-            className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg data-[noaction=false]:hover:bg-gray-100 data-[noaction=false]:hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 data-[noaction=false]:dark:hover:bg-gray-700 data-[noaction=false]:dark:hover:text-white cursor-pointer data-[noaction=true]:cursor-not-allowed"
+            className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 data-[noaction='true']:text-gray-300 bg-white border border-gray-300 data-[noaction='true']:border-none rounded-r-lg data-[noaction=false]:hover:bg-gray-100 data-[noaction=false]:hover:text-gray-700 dark:bg-gray-800 data-[noaction='true']:dark:bg-transparent dark:border-gray-700 dark:text-gray-400 data-[noaction='true']:dark:text-gray-600 data-[noaction=false]:dark:hover:bg-gray-700 data-[noaction=false]:dark:hover:text-white cursor-pointer data-[noaction=true]:cursor-not-allowed"
           >
             Next
           </a>
