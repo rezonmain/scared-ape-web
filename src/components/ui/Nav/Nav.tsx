@@ -9,7 +9,7 @@ const Nav = (props: NavProps) => {
   const { drawer } = props;
 
   return (
-    <nav className="flex justify-between p-4 items-center">
+    <nav className="flex justify-between marker:items-center mb-4">
       <Breadcrumb />
       <button
         type="button"
