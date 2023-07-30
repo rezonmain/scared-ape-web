@@ -1,5 +1,6 @@
 import { Nav } from "@/components/ui/Nav/Nav";
-import { Sidebar } from "@/components/ui/Sidebar/Sidebar";
+import { Footer } from "@/components/ui/TheFooter/Footer";
+import { Sidebar } from "@/components/ui/TheSidebar/Sidebar";
 import { useAuth } from "@/hooks/useAuth";
 import { useFlowbiteDrawer } from "@/hooks/useFlowbiteDrawer";
 import { QueryAlert } from "@/types/QueryAlert";
@@ -8,9 +9,9 @@ import { useNavigate } from "react-router-dom";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const sidebarRef = useRef<HTMLDivElement>(null);
-  const { drawer } = useFlowbiteDrawer(sidebarRef);
   const { isAuth } = useAuth();
   const navigate = useNavigate();
+  const { drawer } = useFlowbiteDrawer(sidebarRef);
 
   useEffect(() => {
     if (!isAuth) {
@@ -25,6 +26,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   }, [isAuth]);
 
   const items: ComponentProps<typeof Sidebar>["items"] = [
+    {
+      href: "/",
+      icon: "home",
+      label: "Home",
+    },
     {
       href: "/scraper",
       icon: "scraper",
@@ -51,11 +57,16 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <>
-      <Nav drawer={drawer} items={items} />
-      <Sidebar ref={sidebarRef} drawer={drawer} items={items} />
-      {children}
-    </>
+    <div className="flex flex-row">
+      <Sidebar ref={sidebarRef} items={items} drawer={drawer} />
+      <div className="flex-1 pt-2 flex flex-col">
+        <section className="flex-1">
+          <Nav drawer={drawer} />
+          {children}
+        </section>
+        <Footer />
+      </div>
+    </div>
   );
 };
 
