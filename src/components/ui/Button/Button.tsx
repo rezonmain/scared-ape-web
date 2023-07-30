@@ -6,7 +6,8 @@ type ButtonVariant =
   | "primary"
   | "secondary"
   | "primary-outline"
-  | "secondary-outline";
+  | "secondary-outline"
+  | "danger";
 interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   variant?: ButtonVariant;
   disabledTooltip?: Omit<TooltipProps, "children">;
@@ -21,6 +22,8 @@ const buttonClassnames: Record<ButtonVariant, string> = {
     "text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 disabled:hover:bg-transparent disabled:hover:text-blue-700 disabled:hover:dark:text-blue-500 disabled:cursor-not-allowed",
   "secondary-outline":
     "text-gray-700 bg-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm py-2.5 px-5 dark:bg-gray-800 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800 disabled:bg-gray-400 disabled:dark:bg-gray-500 disabled:cursor-not-allowed",
+  danger:
+    "text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-500 dark:focus:ring-red-800 disabled:hover:bg-transparent disabled:hover:text-red-700 disabled:hover:dark:text-red-500 disabled:cursor-not-allowed",
 };
 
 const Button = ({ className, variant = "primary", ...props }: ButtonProps) => {
