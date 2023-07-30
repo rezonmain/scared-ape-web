@@ -14,7 +14,7 @@ const Breadcrumb = () => {
         <li className="inline-flex items-center">
           <Link
             to="/"
-            className="inline-flex items-center text-md font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+            className="inline-flex items-center text-md lg:text-lg font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
           >
             <Icon name="crumbHome" />
             Home
@@ -26,7 +26,7 @@ const Breadcrumb = () => {
               <Icon name="crumbChevron" />
               <Link
                 to={crumb.href}
-                className="ml-1 text-md font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"
+                className="ml-1 text-md lg:text-lg font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"
               >
                 {startCase(crumb.pathname)}
               </Link>
