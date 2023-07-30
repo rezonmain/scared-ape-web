@@ -7,14 +7,14 @@ const Breadcrumb = () => {
   const { crumbs } = useBreadcrumb();
   return (
     <div
-      className="flex max-w-screen-xl flex-wrap items-center justify-between p-4"
+      className="flex max-w-screen-xl flex-wrap items-center justify-between"
       aria-label="Breadcrumb"
     >
       <ol className="inline-flex items-center space-x-1 md:space-x-3">
         <li className="inline-flex items-center">
           <Link
             to="/"
-            className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+            className="inline-flex items-center text-md font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
           >
             <Icon name="crumbHome" />
             Home
@@ -26,7 +26,7 @@ const Breadcrumb = () => {
               <Icon name="crumbChevron" />
               <Link
                 to={crumb.href}
-                className="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"
+                className="ml-1 text-md font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white"
               >
                 {startCase(crumb.pathname)}
               </Link>
