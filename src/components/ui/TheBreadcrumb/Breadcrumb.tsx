@@ -21,7 +21,7 @@ const Breadcrumb = () => {
           </Link>
         </li>
         {crumbs.map((crumb) => (
-          <li>
+          <li key={JSON.stringify(crumb)}>
             <div className="flex items-center">
               <Icon name="crumbChevron" />
               <Link
