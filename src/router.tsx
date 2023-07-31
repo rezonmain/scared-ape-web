@@ -8,6 +8,7 @@ import {
 import { DashboardLayout } from "./layouts/dashboard";
 import { GlobalLayout } from "./layouts/global";
 import { FloatingLayout } from "./layouts/floating";
+import { dashboardLoader } from "./layouts/dashboard.loader";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
       }
     >
       <Route
+        loader={dashboardLoader}
         element={
           <DashboardLayout>
             <Outlet />
