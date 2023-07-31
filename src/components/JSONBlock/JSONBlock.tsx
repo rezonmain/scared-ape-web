@@ -10,7 +10,7 @@ const JSONBlock = ({ json }: { json: Json }) => {
         <p className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
           Scraped data
         </p>
-        {json.status == "latest" && <Indicator />}
+        {json.status === "latest" && <Indicator />}
       </div>
       <p className="text-sm font-normal text-gray-700 dark:text-gray-400">
         {Dates.toLocal(json.createdAt ?? "")}
